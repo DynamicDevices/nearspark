@@ -7,9 +7,11 @@ on:
 
 jobs:
   turkeyGitops:
-    uses: mozilla/hubs-ops/.github/workflows/turkeyGitops.yml@master
+    uses: dynamicdevices/hubs-ops/.github/workflows/turkeyGitops.yml@master
     with:
-      registry: mozillareality
+      DOCKER_HUB_USR: ${{ vars.DOCKER_HUB_USR || 'hubsfoundation' }}
+      registry: ${{ vars.DOCKER_REGISTRY || 'hubsfoundation' }}
       # dockerfile: Dockerfile
+      platforms: 'linux/amd64,linux/arm64'
     secrets:
       DOCKER_HUB_PWD: ${{ secrets.DOCKER_HUB_PWD }}
